@@ -1,9 +1,6 @@
 package bonch.dev.school
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -22,13 +19,15 @@ class FragmentActivity : FragmentActivity() {
     private lateinit var textField: EditText
 
     private var counter = CounterBtn()
-    private val fragment = MyFragment()
+    private val myFragment = MyFragment()
     private val manager: FragmentManager = supportFragmentManager
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment)
-
+        var bundle = Bundle()
 
 
 
@@ -51,7 +50,6 @@ class FragmentActivity : FragmentActivity() {
 
         textField = findViewById(R.id.text_field)
 
-        val bundle = Bundle()
 
         nextActivityButton = findViewById(R.id.next_activity_button)
         nextActivityButton.setOnClickListener(View.OnClickListener {
@@ -59,16 +57,11 @@ class FragmentActivity : FragmentActivity() {
             bundle.putInt("TAP", counter.currentCount)
             bundle.putBoolean("INDICATOR", indicatorButton.isEnabled)
             bundle.putString("TEXT", textField.text.toString())
-            fragment.setArguments(bundle)
-            val trancation = manager.beginTransaction().replace(R.id.fragment, fragment).commit()
+            myFragment.arguments = bundle
+            val trancation = manager.beginTransaction().replace(R.id.fragment, myFragment).commit()
         })
 
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt("TAP_AMOUNT",counter.currentCount)
-        outState.putBoolean("INDICATOR",indicatorButton.isEnabled)
-    }
 }

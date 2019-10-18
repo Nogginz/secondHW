@@ -1,5 +1,6 @@
 package bonch.dev.school.fragments
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import bonch.dev.school.R
 import kotlinx.android.synthetic.main.my_fragment.view.*
 
 class MyFragment: Fragment(){
-    val bundle = getArguments()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -19,10 +20,10 @@ class MyFragment: Fragment(){
         val view = inflater.inflate(R.layout.my_fragment,
             container, false)
         val textField:TextView = view.findViewById(R.id.textView)
-        var indicator = if(bundle!!.getBoolean("INDICATOR")) "Нажата" else "Не нажата"
-        textField.setText("Количество тапов: ${bundle?.getInt("TAP", 2)}\n" +
-                          "Текст в поле: ${bundle?.get("TEXT")}\n" +
-                          "Кнопка индикатор: $indicator")
+        var indicator = if(arguments?.getBoolean("INDICATOR")!!) "не нажата" else "нажата"
+        textField.text = "Количество тапов: ${arguments?.getInt("TAP", 2)}\n" +
+                "Текст в поле: ${arguments?.get("TEXT")}\n" +
+                "Кнопка индикатор $indicator"
 
         return view
     }

@@ -23,7 +23,7 @@
         android:id="@+id/next_activity_button"
         android:layout_width="408dp"
         android:layout_height="76dp"
-        android:text="Следующий экран"
+        android:text="Обновить/создать фрагмент"
         app:layout_constraintBottom_toTopOf="@+id/counterButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
